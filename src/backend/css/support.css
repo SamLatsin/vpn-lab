@@ -1,0 +1,94 @@
+/* Remove this if pasting into your stylesheet */
+
+html, body { border: 0; margin: 0; padding: 0; }
+body { background: #f9f9f9; font: 14px sans-serif; color:#666; }
+.content { margin: 0 auto; max-width: 800px; padding: 20px; }
+
+/* END "Remove this" */
+
+textarea {
+	resize: none;
+}
+
+/* Message boxes */
+.ucf .message { margin-bottom: 20px; }
+.ucf .message p { font-weight: bold; margin-top: 0; }
+.ucf .message p:last-child { margin-bottom: 0; }
+.ucf .message ul { margin-bottom: 0; }
+/* Error message box */
+.ucf .message .errors { background: #fff; border: solid 1px #ccc; border-left: solid 10px #d9534f; border-radius: 5px; padding: 20px; }
+.ucf .message .errors p { color: #d9534f; }
+/* Success message box */
+.ucf .message .success { background: #fff; border: solid 1px #ccc; border-left: solid 10px #5cb85c; border-radius: 5px; padding: 20px; }
+.ucf .message .success p { color: #5cb85c; }
+
+/* Form */
+.ucf * { outline: none; }
+.ucf fieldset { border: solid 1px #ccc; border-radius: 5px;}
+.ucf legend { font-weight: bold; padding: 10px; }
+.ucf .field-wrapper { clear: both; margin-top: 0; line-height:2em; }
+.ucf .field-wrapper label span { display: inline-block; float: left; width:100px; }
+.ucf .field-wrapper input[type=text],
+.ucf .field-wrapper input[type=tel],
+.ucf .field-wrapper input[type=email],
+.ucf .field-wrapper input[type=password],
+.ucf .field-wrapper textarea,
+.ucf .field-wrapper select { border: solid 1px #ccc; border-radius: 5px; padding: 10px; transition: all .3s ease-in-out; }
+.ucf .field-wrapper input[type=text]:focus,
+.ucf .field-wrapper input[type=tel]:focus,
+.ucf .field-wrapper input[type=email]:focus,
+.ucf .field-wrapper input[type=password]:focus,
+.ucf .field-wrapper textarea:focus,
+.ucf .field-wrapper select:focus { border: solid 1px #333; -webkit-transform: scale(1.05); -moz-transform: scale(1.05); transform: scale(1.05); }
+@media ( max-width: 480px ){
+	.ucf fieldset { padding: 10px; }
+	.ucf .field-wrapper { margin-bottom: 10px; }
+	.ucf .field-wrapper input[type=text],
+	.ucf .field-wrapper input[type=tel],
+	.ucf .field-wrapper input[type=email],
+	.ucf .field-wrapper input[type=password],
+	.ucf .field-wrapper textarea { width: 150px; }
+	.ucf .field-wrapper select { width:170px; }
+}
+@media ( min-width: 481px ){
+	.ucf fieldset { padding: 20px; }
+	.ucf .field-wrapper { margin-bottom: 20px; }
+	.ucf .field-wrapper input[type=text],
+	.ucf .field-wrapper input[type=tel],
+	.ucf .field-wrapper input[type=email],
+	.ucf .field-wrapper input[type=password],
+	.ucf .field-wrapper textarea { width: 200px; }
+	.ucf .field-wrapper select { width:220px; }
+}
+
+/* Select 2 overrides */
+.select2 { margin-bottom: 20px; }
+.select2-container .selection,
+.select2-container .select2-selection { width: 100% !important; }
+.select2-search__field:focus { outline: none; }
+
+/* Google no CAPTCHA reCAPTCHA */
+@media ( max-width: 480px ){
+	.g-recaptcha{ margin-bottom: 10px; }
+}
+@media ( min-width: 481px ){
+	.g-recaptcha{ padding-left: 100px; margin-bottom: 20px; }
+}
+@media screen and (max-height: 575px) and (max-width: 335px){
+	#rc-imageselect, .g-recaptcha {
+		transform:scale(0.77);
+		-webkit-transform:scale(0.77);
+		transform-origin:0 0;
+		-webkit-transform-origin:0 0;
+	}
+}
+
+/* Honey trap field */
+.ucf .hey-honey { left: -9999px; position: absolute; }
+
+/* Button */
+.ucf button[type=submit] { background: #5cb85c; border: 0; border-radius: 5px; color: #fff; cursor: pointer; font-size: 1em; font-weight:bold; margin-left: 100px; padding: 10px 15px; transition: background .3s; }
+.ucf button[type=submit]:hover { background: #4F9D4F; }
+.ucf button[type=submit].complete { background: #dff0d8; cursor: default; }
+.ucf button.secondary { background: #ccc; border: 0; border-radius: 5px; color: #fff; cursor: pointer; font-size: 1em; margin-left: 100px; padding: 10px 15px; transition: background .3s; }
+.ucf button.secondary:hover { background: #ddd; }

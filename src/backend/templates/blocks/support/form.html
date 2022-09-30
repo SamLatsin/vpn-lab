@@ -1,0 +1,46 @@
+<div class="content">
+	<h1>Support</h1>
+	<form action="/support/send_question" enctype="multipart/form-data" method="POST" name="contact" id="contact" class="ucf">
+		<div class="message"></div>
+		<fieldset>
+			<legend>Please provide your details below</legend>
+
+			<p class="field-wrapper">
+				<label for="name" accesskey="U">
+					<span class="required">Your Name</span>
+					<input class="field" type="text" name="name" id="name" size="30" required="">
+				</label>
+			</p>
+
+			<p class="field-wrapper">
+				<label for="email" accesskey="E">
+					<span class="required">Email</span>
+					<input class="field" type="email" name="email" id="email" size="30" placeholder="you@youremail.com" required="">
+				</label>
+			</p>
+
+			<p class="field-wrapper">
+				<label for="subject" accesskey="S">
+					<span class="required">Subject</span>
+					<select class="field" name="topic" id="topic" required="">
+						<option value="" selected="selected">Select one</option>
+						<option value="subscription">Subscription / Abonnement</option>
+						<option value="bug">Report a Bug</option>
+						<option value="suggestion">Suggest a Feature</option>
+						<option value="marketing">Marketing Inquiries</option>
+					</select>
+				</label>
+			</p>
+
+			<p class="field-wrapper">
+				<label for="message" accesskey="M">
+					<span class="required">Message</span>
+					<textarea class="field" name="text" id="text" cols="40" rows="3" required="" style="width: 319px; height: 152px;"></textarea>
+				</label>
+			</p>
+							
+			<button type="submit" class="button primary">Send details</button>
+
+		</fieldset>
+	</form>
+</div>

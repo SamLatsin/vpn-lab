@@ -1,0 +1,7 @@
+{
+    "require": {
+        "lcobucci/jwt": "^4.0",
+        "firebase/php-jwt": "^6.3",
+        "yanlongli/app-store-server-api": "^1.0"
+    }
+}
