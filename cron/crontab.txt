@@ -1,0 +1,10 @@
+## check verification code expiration
+*/5 * * * *     curl --location --request POST 'https://localhost/cron/check-code-timeout' -k >/dev/null 2>&1
+## parse vpngate servers
+*/5 * * * *     curl --location --request POST 'https://localhost/cron/vpn/parse/vpngate' -k
+## auto cancel subscription
+0 0 * * *       curl --location --request POST 'https://localhost/cron/check-premium-timeout' -k
+## sync servers ping
+*/6 * * * *     curl --location --request POST 'https://localhost/cron/vpn/sync' -k
+## check openvpn config is valid
+*/6 * * * *     curl --location --request POST 'https://localhost/cron/vpn/sync_openvpn' -k
