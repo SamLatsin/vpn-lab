@@ -27,6 +27,7 @@ Extends a private network across a public network and enables users to send and 
 * Linux server
 * Phalcon 5.0.0RC3+
 * PHP 8.1+
+* Domain with SSL
 ### Installation
 #### Backend
 Clone project:
@@ -54,6 +55,12 @@ Now you can just build the project.
 
 ### Screenshots
 <p float="left">
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/1.jpg" width="16%" />
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/2.jpg" width="16%" /> 
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/3.jpg" width="16%" />
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/4.jpg" width="16%" />
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/5.jpg" width="16%" />
+  <img src="https://github.com/SamLatsin/vpn-lab/blob/main/preview/6.jpg" width="16%" />
 </p>
 
 ## License
