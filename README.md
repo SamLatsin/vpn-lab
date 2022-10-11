@@ -2,7 +2,7 @@
 Complete VPN mobile and backend application written in Flutter and Phalcon Framework
 
 ## Overview
-Extends a private network across a public network and enables users to send and receive data across shared or public networks as if their computing devices were directly connected to the private network. The benefits of a VPN include increases in functionality, security, and management of the private network. It provides access to resources that are inaccessible on the public network and is typically used for remote workers. Encryption is common, although not an inherent part of a VPN connection. Check [API documentation](https://sam-latsin.gitbook.io/vpn-lab-rest-api/)
+Extends a private network across a public network and enables users to send and receive data across shared or public networks as if their computing devices were directly connected to the private network. The benefits of a VPN include increases in functionality, security, and management of the private network. It provides access to resources that are inaccessible on the public network and is typically used for remote workers. Encryption is common, although not an inherent part of a VPN connection. Check [API documentation](https://sam-latsin.gitbook.io/vpn-lab-rest-api/).
 ### Use cases
 * Bypass geo-restrictions / censorship
 * Avoid ISP monitoring
