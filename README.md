@@ -17,10 +17,10 @@ Extends a private network across a public network and enables users to send and 
 * Registartion by mail with password recover
 * VPN load calculation
 * Feedback page
+* OpenVPN automated servers checker
 ### What needs to be done
 * Add support for another VPN protocols (such as Wireguard, IPSec/IKEv2, etc)
 * Add full support of subsciptions on Android
-* Add more VPN validators, so dead servers didn't come to clients
 ## Getting Started
 ### Requirements
 * Android or IOS phone
@@ -28,6 +28,7 @@ Extends a private network across a public network and enables users to send and 
 * Phalcon 5.0.0RC3+
 * PHP 8.1+
 * Domain with SSL
+* openvpn installed on server
 ### Installation
 #### Backend
 Clone project:
@@ -41,6 +42,11 @@ Import `db snapshot/main.sql` to your Database.
 Add all lines from `cron/crontab.txt` to your crontab.
 
 Edit file `/var/www/vpn-lab/app/app.php` and put your Database credentials.
+
+Add php user to sudoers (This needs for openvpn servers checker). Open `/etc/sudoers` and put that line in "User privilege specification" section (www-root is the name of your php user, you can change it):
+```
+www-root ALL=(ALL) NOPASSWD:ALL
+```
 
 After all steps done you can check if API works, check [API documentation](https://sam-latsin.gitbook.io/vpn-lab-rest-api/).
 #### Mobile

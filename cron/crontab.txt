@@ -7,4 +7,4 @@
 ## sync servers ping
 */6 * * * *     curl --location --request POST 'https://localhost/cron/vpn/sync' -k
 ## check openvpn config is valid
-*/6 * * * *     curl --location --request POST 'https://localhost/cron/vpn/sync_openvpn' -k
+*/10 * * * *     curl --location --request POST 'https://localhost/cron/vpn/sync_openvpn' -k

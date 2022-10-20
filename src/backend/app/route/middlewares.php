@@ -37,11 +37,16 @@ function ping($ip) {
 
 function checkOpenVPNConfig($config) {
   $config = base64_decode($config);
-  $start = strpos($config, "\nremote ");
-  $config = substr($config, $start);
-  $end = strpos($config, "\r");
-  $config = substr($config, 8, $end - 8);
-  exec("echo \"abcd\" | netcat -u -v -w2 $config", $output, $status);
+  file_put_contents(getcwd()."/temp.ovpn", $config);
+
+  $command = "sudo openvpn --config ".getcwd()."/temp.ovpn"." --route-nopull";
+  exec("sudo timeout 5 openvpn --config ".getcwd()."/temp.ovpn"." --route-nopull", $output, $result_code);
+  $status = false;
+  foreach ($output as $key => $line) {
+    if (str_contains($line, "Initialization Sequence Completed")) {
+      $status = true;
+    }
+  }
   return $status;
 }
 

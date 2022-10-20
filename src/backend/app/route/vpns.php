@@ -196,47 +196,49 @@ $app->post('/cron/vpn/sync', function () use ($app) {
 });
 
 $app->post('/cron/vpn/sync_openvpn', function () use ($app) {
+  $two_factor_sync = true;
+  if ($two_factor_sync) {
+    $task = $app["CronJob"]->getCronJobByName("isCheckingOpenVPNConfigs");
+    if ($task[0]["status"] == 0) {
+      $fields = [
+        "status"=>1,
+      ];
+      $app["CronJob"]->updateCronJob($fields, $task[0]['id']);
 
-  $task = $app["CronJob"]->getCronJobByName("isCheckingOpenVPNConfigs");
-  if ($task[0]["status"] == 0) {
-    $fields = [
-      "status"=>1,
-    ];
-    $app["CronJob"]->updateCronJob($fields, $task[0]['id']);
+      $servers = $app['Server']->getPingedOpenVPNServers();
+      $servers_to_delete = [];
 
-    $servers = $app['Server']->getPingedOpenVPNServers();
-    $servers_to_delete = [];
-
-    foreach ($servers as $key => $server) {
-      $check = checkOpenVPNConfig($server["config"]);
-      if ($check == 0) {
-        $fields = [
-          'synced'=>2,
-        ];
-        $app["Server"]->updateServer($fields, $server["id"]);
+      foreach ($servers as $key => $server) {
+        $status = checkOpenVPNConfig($server["config"]);
+        if ($status) {
+          $fields = [
+            'synced'=>2,
+          ];
+          $app["Server"]->updateServer($fields, $server["id"]);
+        }
+        else {
+          array_push($servers_to_delete, $server);
+        }
       }
-      else {
-        array_push($servers_to_delete, $server);
+
+      foreach ($servers_to_delete as $key => $server) {
+        if ($server["donor"] == "vpngate") {
+          $app["Server"]->deleteServerByIp($server["ip"]);
+        }
       }
+
+      $fields = [
+        "status"=>0,
+      ];
+      $app["CronJob"]->updateCronJob($fields, $task[0]['id']);
+
+      $result = [
+        'error'=>false,
+        'result'=>"synced",
+      ];
+      header('Content-Type: application/json; charset=utf-8');
+      return json_encode($result);
     }
-
-    foreach ($servers_to_delete as $key => $server) {
-      if ($server["donor"] == "vpngate") {
-        $app["Server"]->deleteServerByIp($server["ip"]);
-      }
-    }
-
-    $fields = [
-      "status"=>0,
-    ];
-    $app["CronJob"]->updateCronJob($fields, $task[0]['id']);
-
-    $result = [
-      'error'=>false,
-      'result'=>"synced",
-    ];
-    header('Content-Type: application/json; charset=utf-8');
-    return json_encode($result);
   }
   $result = [
     'error'=>true,
@@ -267,11 +269,11 @@ $app->post('/api/vpn/ping', function () use ($app) {
 
 $app->post('/api/vpn/check_openvpn_config', function () use ($app) {
     $config = $app['request']->get('config', null);
-    $check = checkOpenVPNConfig($config);
-    if ($check == 0) {
+    $status = checkOpenVPNConfig($config);
+    if ($status) {
       $result = [
         'error'=>false,
-        'result'=>$check,
+        'result'=>$status,
       ];
       header('Content-Type: application/json; charset=utf-8');
       return json_encode($result);
@@ -283,6 +285,7 @@ $app->post('/api/vpn/check_openvpn_config', function () use ($app) {
     header('Content-Type: application/json; charset=utf-8');
     return json_encode($result);
 });
+
 
 
 
