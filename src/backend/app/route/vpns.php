@@ -269,6 +269,14 @@ $app->post('/api/vpn/ping', function () use ($app) {
 
 $app->post('/api/vpn/check_openvpn_config', function () use ($app) {
     $config = $app['request']->get('config', null);
+    if (!$config) {
+      $result = [
+        'error'=>true,
+        'result'=>"No server config",
+      ];
+      header('Content-Type: application/json; charset=utf-8');
+      return json_encode($result);
+    }
     $status = checkOpenVPNConfig($config);
     if ($status) {
       $result = [
